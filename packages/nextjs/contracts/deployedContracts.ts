@@ -7,8 +7,37 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     DataMarketplace: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0xB0D4afd8879eD9F52b28595d31B441D079B2Ca07",
       abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "addressToAICompany",
+          outputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "companyAddress",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
         {
           inputs: [
             {
@@ -414,7 +443,7 @@ const deployedContracts = {
             },
             {
               internalType: "uint256",
-              name: "jobId",
+              name: "jobID",
               type: "uint256",
             },
             {
