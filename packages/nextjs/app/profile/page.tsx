@@ -1,17 +1,19 @@
-"use client"
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import profile from "../../assets/Pepe.jpeg";
 import viewJobs from "../../assets/jobs.svg";
 import marketPlace from "../../assets/marketplace.svg";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/@/components/ui/tabs";
 
 const page = () => {
   const handleChallengeAnnotation = () => {
     console.log("handleChallengeAnnotation");
-  } 
+  };
   const handleAnnotateData = () => {
     console.log("handleAnnotateData");
-  }
+  };
   return (
     <div className="h-screen flex ">
       {/* sidebar */}
@@ -80,24 +82,40 @@ const page = () => {
             </div>
           </div>
 
-          <p className="mt-4 md:mt-6">THIS DIDFSSD FASDFSADFASDFS DESCRIPTOTIN FASDFASD FASDFA SFA SD FASD FASDF ADS FA SF ASD FD FS DF SDF AD F ASDFASD FASDFASDFASD ASDFA SDF ASD FASD FA SDF AD FASD FAS DFASDF</p>
+          <p className="mt-4 md:mt-6 text-sm ">
+            THIS DIDFSSD FASDFSADFASDFS DESCRIPTOTIN FASDFASD FASDFA SFA SD FASD FASDF ADS FA SF ASD FD FS DF SDF AD F
+            ASDFASD FASDFASDFASD ASDFA SDF ASD FASD FA SDF AD FASD FAS DFASDF
+          </p>
 
           <div className="flex gap-4 mt-10 lg:mt-12">
-            <button className="py-2 px-4 border text-lg font-semibold rounded-lg" onClick={()=>handleAnnotateData()}>Annotate Data</button>
-            <button className="py-2 px-4 border text-lg font-semibold rounded-lg" onClick={()=>handleChallengeAnnotation()}>Challenge Annotation</button>
+            <button className="py-2 px-4 border text-lg font-semibold rounded-xl" onClick={() => handleAnnotateData()}>
+              Annotate Data
+            </button>
+            <button
+              className="py-2 px-4 border text-lg font-semibold rounded-xl"
+              onClick={() => handleChallengeAnnotation()}
+            >
+              Challenge Annotation
+            </button>
           </div>
 
           <div className="mt-10 lg:mt-12">
-            <p className="text-xl w-fit font-semibold md:text-2xl relative ">Jobs
-            <span className="flex justify-center items-center border rounded-full text-sm absolute h-7 w-7 -top-1 -right-8 ">10</span>
+            <p className="text-xl w-fit font-semibold md:text-2xl relative ">
+              Jobs
+              {/* <span className="flex justify-center items-center border rounded-full text-sm absolute h-7 w-7 -top-1 -right-8 ">
+                10
+              </span> */}
             </p>
 
-            <div className="">
-              <p className="p-2 border-b">Ongoing</p>
-              <p>Previous</p>
-            </div>
+            <Tabs defaultValue="Ongoing" className="w-[400px]">
+              <TabsList>
+                <TabsTrigger value="Ongoing">Ongoing</TabsTrigger>
+                <TabsTrigger value="Previous">Previous</TabsTrigger>
+              </TabsList>
+              <TabsContent value="Ongoing">Make changes to your account here.</TabsContent>
+              <TabsContent value="Previous">Change your password here.</TabsContent>
+            </Tabs>
           </div>
-        
         </div>
       </div>
     </div>
