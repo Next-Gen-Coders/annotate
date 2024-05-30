@@ -124,6 +124,7 @@ contract DataMarketplace {
 			addressToAnnotator[msg.sender].annotatorAddress == address(0),
 			"Address already has an annotator profile"
 		);
+
 		allAiCompanyProfiles.push(
 			AICompany(_name, msg.sender, _description, new uint256[](0))
 		);
@@ -457,12 +458,49 @@ contract DataMarketplace {
 		}
 	}
 
+	function getSubmissions(
+		uint256 _jobID,
+		uint256[] memory _submissionIDs
+	) public view returns (Submission[] memory) {
+		Submission[] memory submissions = new Submission[](
+			_submissionIDs.length
+		);
+		for (uint256 i = 0; i < _submissionIDs.length; i++) {
+			submissions[i] = jobToSubmissions[_jobID][_submissionIDs[i]];
+		}
+		return submissions;
+	}
+
+	/// @notice Returns challenged submissions for a given job
+	/// @param _jobID The ID of the job
+	/// @param _challengedSubmissionIDs An array of challenged submission IDs
+	/// @return An array of ChallengedSubmission structs
+	function getChallengedSubmissions(
+		uint256 _jobID,
+		uint256[] memory _challengedSubmissionIDs
+	) public view returns (ChallengedSubmission[] memory) {
+		ChallengedSubmission[]
+			memory challengedSubmissions = new ChallengedSubmission[](
+				_challengedSubmissionIDs.length
+			);
+		for (uint256 i = 0; i < _challengedSubmissionIDs.length; i++) {
+			challengedSubmissions[i] = jobToChallengedSubmissions[_jobID][
+				_challengedSubmissionIDs[i]
+			];
+		}
+		return challengedSubmissions;
+	}
+
 	/// @notice Annotates the specified job
 	/// @param _jobID The ID of the job to be annotated
 	function annotateJob(uint256 _jobID) public {
 		Job storage job = allAnnotationJobs[_jobID];
 		Annotator storage annotator = addressToAnnotator[msg.sender];
 
+		require(
+			annotator.annotatorAddress != address(0),
+			"You must have an annotator profile"
+		);
 		require(job.isActive, "Job must be active to annotate");
 		require(
 			annotator.annotatorTier >= job.annotatorType,
@@ -473,6 +511,17 @@ contract DataMarketplace {
 			"Annotator score must be at least 700"
 		);
 
+		bool isAlreadyAnnotator = false;
+		for (uint256 i = 0; i < job.annotators.length; i++) {
+			if (job.annotators[i] == msg.sender) {
+				isAlreadyAnnotator = true;
+				break;
+			}
+		}
+		require(
+			!isAlreadyAnnotator,
+			"You are already an annotator for this job"
+		);
 		job.annotators.push(msg.sender);
 		annotator.jobs.push(_jobID);
 	}
@@ -523,7 +572,10 @@ contract DataMarketplace {
 			annotator.annotatorTier > submission.annotatorType,
 			"Challenger tier must be higher than submission tier"
 		);
-
+		require(
+			msg.sender != submission.annotator,
+			"You cannot challenge your own submission"
+		);
 		challengeCounter++;
 		job.challengedAnnotations.push(challengeCounter);
 		annotator.challengedSubmissions.push(challengeCounter);
@@ -541,5 +593,31 @@ contract DataMarketplace {
 			)
 		);
 		submission.isChallenged = true;
+	}
+
+	/// @notice Returns all annotator profiles
+	/// @return An array of Annotator structs containing all annotator profiles
+	function getAllAnnotatorProfiles()
+		public
+		view
+		returns (Annotator[] memory)
+	{
+		return allAnnotatorsProfile;
+	}
+
+	/// @notice Returns all AI company profiles
+	/// @return An array of AICompany structs containing all AI company profiles
+	function getAllAICompanyProfiles()
+		public
+		view
+		returns (AICompany[] memory)
+	{
+		return allAiCompanyProfiles;
+	}
+
+	/// @notice Returns all annotation jobs
+	/// @return An array of Job structs containing all annotation jobs
+	function getAllJobs() public view returns (Job[] memory) {
+		return allAnnotationJobs;
 	}
 }

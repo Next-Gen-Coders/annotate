@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     DataMarketplace: {
-      address: "0xB0D4afd8879eD9F52b28595d31B441D079B2Ca07",
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
       abi: [
         {
           inputs: [
@@ -355,6 +355,298 @@ const deployedContracts = {
           name: "endJob",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getAllAICompanyProfiles",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "name",
+                  type: "string",
+                },
+                {
+                  internalType: "address",
+                  name: "companyAddress",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "jobs",
+                  type: "uint256[]",
+                },
+              ],
+              internalType: "struct DataMarketplace.AICompany[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getAllAnnotatorProfiles",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "name",
+                  type: "string",
+                },
+                {
+                  internalType: "address",
+                  name: "annotatorAddress",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "enum DataMarketplace.AnnotatorType",
+                  name: "annotatorTier",
+                  type: "uint8",
+                },
+                {
+                  internalType: "uint256",
+                  name: "annotatorScore",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "challengedSubmissions",
+                  type: "uint256[]",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "submissions",
+                  type: "uint256[]",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "jobs",
+                  type: "uint256[]",
+                },
+              ],
+              internalType: "struct DataMarketplace.Annotator[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getAllJobs",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "jobID",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "postedBy",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "title",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "rewardPool",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "rawDataFolderLink",
+                  type: "string",
+                },
+                {
+                  internalType: "enum DataMarketplace.AnnotatorType",
+                  name: "annotatorType",
+                  type: "uint8",
+                },
+                {
+                  internalType: "address[]",
+                  name: "annotators",
+                  type: "address[]",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "submissions",
+                  type: "uint256[]",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "challengedAnnotations",
+                  type: "uint256[]",
+                },
+                {
+                  internalType: "bool",
+                  name: "isActive",
+                  type: "bool",
+                },
+              ],
+              internalType: "struct DataMarketplace.Job[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_jobID",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "_challengedSubmissionIDs",
+              type: "uint256[]",
+            },
+          ],
+          name: "getChallengedSubmissions",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "challengeID",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "challenger",
+                  type: "address",
+                },
+                {
+                  internalType: "enum DataMarketplace.AnnotatorType",
+                  name: "challengerType",
+                  type: "uint8",
+                },
+                {
+                  internalType: "address",
+                  name: "challenged",
+                  type: "address",
+                },
+                {
+                  internalType: "enum DataMarketplace.AnnotatorType",
+                  name: "challengedType",
+                  type: "uint8",
+                },
+                {
+                  internalType: "string",
+                  name: "folderLink",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "timestamp",
+                  type: "uint256",
+                },
+                {
+                  internalType: "enum DataMarketplace.ActionType",
+                  name: "outcome",
+                  type: "uint8",
+                },
+                {
+                  internalType: "bool",
+                  name: "isResolved",
+                  type: "bool",
+                },
+              ],
+              internalType: "struct DataMarketplace.ChallengedSubmission[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_jobID",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "_submissionIDs",
+              type: "uint256[]",
+            },
+          ],
+          name: "getSubmissions",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "submissionID",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "jobID",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "annotator",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "folderLink",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "timestamp",
+                  type: "uint256",
+                },
+                {
+                  internalType: "enum DataMarketplace.AnnotatorType",
+                  name: "annotatorType",
+                  type: "uint8",
+                },
+                {
+                  internalType: "bool",
+                  name: "isChallenged",
+                  type: "bool",
+                },
+              ],
+              internalType: "struct DataMarketplace.Submission[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
         {
