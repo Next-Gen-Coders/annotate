@@ -31,7 +31,7 @@ const page = () => {
               <p className="py-1 px-2 text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-md text-[#bcd0ec] hover:text-[#edd346]">
                 Pro
               </p>
-              <button className="py-1 px-2 text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-md text-[#bcd0ec] hover:text-[#edd346]">
+              <button className="py-1 px-2 text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346]  btn-shadow  bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-md text-[#bcd0ec] hover:text-[#edd346]">
                 Upgrade
               </button>
             </div>

@@ -3,8 +3,8 @@
 @import "tailwindcss/utilities";
 
 @font-face {
-  font-family: 'Akaya Telivigala';
-  src: url('./fonts/akaya-telivigala-latin-400-normal.ttf') format('truetype');
+  font-family: "Akaya Telivigala";
+  src: url("./fonts/akaya-telivigala-latin-400-normal.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -17,7 +17,7 @@
 
 body {
   min-height: 100vh;
-  background-color: #070815
+  background-color: #070815;
 }
 
 .btn {
@@ -32,4 +32,27 @@ body {
   font-family: "Akaya Telivigala", system-ui;
   font-weight: 400;
   font-style: normal;
+}
+
+.hero-section-shadow {
+  -webkit-box-shadow: 0px 10px 40px 5px rgba(56, 89, 144, 0.8);
+  -moz-box-shadow: 0px 10px 40px 5px rgba(56, 89, 144, 0.8);
+  box-shadow: 0px 10px 40px 5px rgba(56, 89, 144, 0.8);
+}
+
+.radial-bg {
+  background: rgb(56, 89, 144);
+  background: radial-gradient(circle, rgba(56, 89, 144, 0.704860826166404) 0%, rgba(252, 70, 107, 0) 41%);
+}
+
+.radial-bottom {
+  background: rgb(56, 89, 144);
+  background: radial-gradient(circle, rgba(56, 89, 144, 0.3603230110403537) 0%, rgba(252, 70, 107, 0) 26%);
+  backdrop-filter: blur(30px);
+}
+
+.btn-shadow:hover {
+  -webkit-box-shadow: 0px 4px 10px 2px rgba(237, 211, 70, 0.1);
+  -moz-box-shadow: 0px 4px 10px 2px rgba(237, 211, 70, 0.1);
+  box-shadow: 0px 4px 10px 2px rgba(237, 211, 70, 0.1);
 }

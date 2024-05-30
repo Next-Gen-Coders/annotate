@@ -32,7 +32,7 @@ const Page = () => {
       {!showRegister && (
         <button
           onClick={handleConnectWalletClick}
-          className="py-2 px-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
+          className="py-2 px-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] btn-shadow  bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
         >
           Connect Wallet
         </button>
@@ -61,7 +61,7 @@ const Page = () => {
           </div>
           <button
             onClick={handleRegisterClick}
-            className="py-2 px-4 w-fit block mx-auto mt-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
+            className="py-2 px-4 w-fit block mx-auto mt-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] btn-shadow  bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
           >
             Register
           </button>
