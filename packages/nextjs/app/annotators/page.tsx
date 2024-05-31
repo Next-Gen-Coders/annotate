@@ -1,74 +1,84 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
-const Page = () => {
-    const router = useRouter();
-  const [showRegister, setShowRegister] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+import Image from "next/image";
+import profile from "../../assets/Pepe.jpeg";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/@/components/ui/tabs";
 
-  const handleRegisterClick = () => {
-    console.log("Register button clicked");
-    router.push("/profile");
-    // Add your registration logic here
+export default function page() {
+  const handleChallengeAnnotation = () => {
+    console.log("handleChallengeAnnotation");
   };
-
-  const handleConnectWalletClick = () => {
-    console.log("Connect Wallet button clicked");
-    setShowRegister(true);
+  const handleAnnotateData = () => {
+    console.log("handleAnnotateData");
   };
-
   return (
-    <div className="min-h-screen flex flex-col items-center pt-[10%] md:gap-8 gap-6">
-      <div>
-        <p className="xl:text-[6em] lg:text-[5em] md:text-[4em] text-[3em] font-semibold">
-          Annotators
-        </p>
-        <p className="text-center text-lg md:text-xl">
-          Help AI companies to annotate their data
-        </p>
-      </div>
-      {!showRegister && (
-        <button
-          onClick={handleConnectWalletClick}
-          className="py-2 px-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
-        >
-          Connect Wallet
-        </button>
-      )}
-      {showRegister && (
-        <div className="flex flex-col gap-4 md:gap-6 xl:w-1/2 lg:w-3/5 md:w-[70%] w-[90%]">
-          <div className="flex items-center gap-4 md:gap-6">
-            <p className="text-lg md:text-xl lg:text-2xl">Name:</p>
-            <input
-              className="bg-transparent w-full p-2 focus:outline-none border-b border-white focus:border-[#edd346] text-lg md:text-xl lg:text-2xl"
-              type="text"
-              placeholder=""
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+    <div className="flex-grow py-4">
+      <div className="w-11/12 mx-auto">
+        <div className="flex items-center gap-4 md:gap-6">
+          <Image src={profile} className="h-24 w-24 rounded-full shadow shadow-white" alt="profile" />
+          <div className="flex justify-between items-center w-full ">
+            <div>
+              <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl py-2">Annotator</p>
+              <div className=" flex gap-4">
+                <p className="py-1 px-2 w-fit text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-[6px] text-[#bcd0ec] hover:text-[#edd346]">
+                  Pro
+                </p>
+                0x123456789
+              </div>
+            </div>
+            <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">750</p>
           </div>
-          <div className="flex items-center gap-4 md:gap-6">
-            <p className="text-lg md:text-xl lg:text-2xl">Description:</p>
-            <input
-              className="bg-transparent w-full p-2 focus:outline-none border-b border-white focus:border-[#edd346] text-lg md:text-xl lg:text-2xl"
-              type="text"
-              placeholder=""
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <button
-            onClick={handleRegisterClick}
-            className="py-2 px-4 w-fit block mx-auto mt-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
-          >
-            Register
+        </div>
+
+        <p className="mt-4 md:mt-6 text-sm ">
+          THIS DIDFSSD FASDFSADFASDFS DESCRIPTOTIN FASDFASD FASDFA SFA SD FASD FASDF ADS FA SF ASD FD FS DF SDF AD F
+          ASDFASD FASDFASDFASD ASDFA SDF ASD FASD FA SDF AD FASD FAS DFASDF
+        </p>
+
+        <div className="flex gap-4 mt-10 lg:mt-12">
+          <button className="py-2 px-4 border rounded-[10px]" onClick={() => handleAnnotateData()}>
+            Annotate Data
+          </button>
+          <button className="py-2 px-4 border rounded-[10px]" onClick={() => handleChallengeAnnotation()}>
+            Challenge Annotations
           </button>
         </div>
-      )}
+
+        <div className="mt-10 lg:mt-12">
+          <p className="text-xl font-semibold md:text-2xl relative ">
+            Job
+            {/* <span className="flex justify-center items-center border rounded-full text-sm absolute h-7 w-7 -top-1 -right-8 ">
+                10
+              </span> */}
+          </p>
+
+          <Tabs defaultValue="Ongoing" className="w-full">
+            <TabsList>
+              <TabsTrigger value="Ongoing" className="">
+                Ongoing
+              </TabsTrigger>
+              <TabsTrigger value="Previous">Previous</TabsTrigger>
+            </TabsList>
+            <TabsContent value="Ongoing">
+              <div className="flex flex-col gap-y-4">
+                <div className="p-4 border border-[#98aecd] rounded-xl flex justify-between">
+                  <h5 className="text-lg">Job Title</h5>
+                  <button className="p-1 px-4 border rounded-xl">View</button>
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="Previous">
+              {" "}
+              <div className="flex flex-col gap-y-4">
+                <div className="p-4 border border-[#98aecd] rounded-xl flex justify-between">
+                  <h5 className="text-lg">Previous Job Title</h5>
+                  <button className="p-1 px-4 border rounded-xl">View</button>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Page;        
+}

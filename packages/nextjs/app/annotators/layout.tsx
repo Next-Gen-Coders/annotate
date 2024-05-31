@@ -33,18 +33,13 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           <div className="flex flex-col gap-4 mt-8">
-            <Link href="/ai-company/post-job" className="flex items-center gap-4">
-              <Image src="/square-pen.svg" width={200} height={200} className="size-6" alt="upload" />
-
-              <p className="text-xl font-semibold">Post a Job</p>
-            </Link>
-            <Link href="/ai-company/view-jobs" className="flex items-center gap-4">
+            <Link href="/annotators/jobs" className="flex items-center gap-4">
               <Image src="/square-pen.svg" width={200} height={200} className="size-6" alt="upload" />
 
               <p className="text-xl font-semibold">View Jobs</p>
             </Link>
 
-            <Link href="/ai-company" className="flex items-center gap-4">
+            <Link href="/" className="flex items-center gap-4">
               <Image src={marketPlace} className="h-7 w-7" alt="profile" />
               <p className="text-xl font-semibold relative">
                 Marketplace
