@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import profile from "../../assets/Pepe.jpeg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/@/components/ui/tabs";
+import profile from "../../../assets/Pepe.jpeg";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/@/components/ui/tabs";
 
 export default function page() {
   const handleChallengeAnnotation = () => {

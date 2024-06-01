@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import profile from "../../assets/Pepe.jpeg";
-import viewJobs from "../../assets/jobs.svg";
+import profile from "../../../assets/Pepe.jpeg";
 import marketPlace from "../../assets/marketplace.svg";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
