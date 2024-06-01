@@ -1,5 +1,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/@/components/ui/tabs";
+import { Button } from "~~/components/@/components/ui/button";
+import Link from "next/link";
 
 export default function page() {
   return (
@@ -25,7 +27,7 @@ export default function page() {
                   commodi adipisci!
                 </p>
               </div>
-              <button className="py-1 px-4 h-fit border rounded-xl">Annotate</button>
+              <Link href={"/annotators/jobs/1"} className="py-1 px-4 h-fit border rounded-xl">Annotate</Link>
             </div>
           </div>
         </TabsContent>
@@ -41,7 +43,7 @@ export default function page() {
                   commodi adipisci!
                 </p>
               </div>
-              <button className="py-1 px-4 h-fit border rounded-xl">Annotate</button>
+              <Link href={"/annotators/jobs/1"} className="py-1 px-4 h-fit border rounded-xl">Annotate</Link>
             </div>
           </div>
         </TabsContent>
@@ -57,7 +59,7 @@ export default function page() {
                   commodi adipisci!
                 </p>
               </div>
-              <button className="py-1 px-4 h-fit border rounded-xl">Annotate</button>
+              <Link href={"/annotators/jobs/1"} className="py-1 px-4 h-fit border rounded-xl">Annotate</Link>
             </div>
           </div>
         </TabsContent>
@@ -73,7 +75,7 @@ export default function page() {
                   commodi adipisci!
                 </p>
               </div>
-              <button className="py-1 px-4 h-fit border rounded-xl">Annotate</button>
+              <Link href={"/annotators/jobs/1"} className="py-1 px-4 h-fit border rounded-xl">Annotate</Link>
             </div>
           </div>
         </TabsContent>

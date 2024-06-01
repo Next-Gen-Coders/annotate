@@ -3,13 +3,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../compone
 
 export default function page() {
   return (
-    <div className="flex flex-col gap-y-4 w-11/12 max-w-screen-xl mx-auto py-10">
+    <div className="w-11/12 max-w-screen-lg px-2 mx-auto py-8">
       <div className="flex flex-col gap-y-6">
         <div className="flex justify-between items-center">
           <h5 className="text-4xl font-semibold">JOB 1</h5>
           <button className="py-1 px-4 h-fit border rounded-xl">Annotate</button>
         </div>
-        <div className="flex justify-between w-1/3 items-center h-8">
+        <div className="flex justify-between w-1/2 items-center h-8 ">
           <p>Reward: 100 Matic</p>
           <div className="h-8 w-0.5 bg-white" />
           <p>Annotator: Pro</p>
@@ -62,7 +62,7 @@ export default function page() {
         <TabsContent value="challenges">
           {" "}
           <div className="flex flex-col justify-center gap-y-4">
-            <div className="p-4 border border-[#98aecd] rounded-xl flex items-center justify-between w-1/2">
+            <div className="p-4 border border-[#98aecd] rounded-xl flex gap-x-6 items-center justify-between w-fit">
               <div className="flex items-center gap-x-4">
                 <div className="size-8 bg-white rounded-full" />
                 <div>

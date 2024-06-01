@@ -3,6 +3,8 @@
 import Image from "next/image";
 import profile from "../../../assets/Pepe.jpeg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/@/components/ui/tabs";
+import { Edit, Pen } from "lucide-react";
+import { Button } from "~~/components/@/components/ui/button";
 
 export default function page() {
   const handleChallengeAnnotation = () => {
@@ -26,7 +28,7 @@ export default function page() {
                 0x123456789
               </div>
             </div>
-            <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">750</p>
+            {/* <Edit /> */}
           </div>
         </div>
 
@@ -39,10 +41,7 @@ export default function page() {
           <button className="py-2 px-4 border rounded-[10px]" onClick={() => handleAnnotateData()}>
             Buy/Sell Data
           </button>
-          <button
-            className="py-2 px-4 border rounded-[10px]"
-            onClick={() => handleChallengeAnnotation()}
-          >
+          <button className="py-2 px-4 border rounded-[10px]" onClick={() => handleChallengeAnnotation()}>
             Get Data Annotated
           </button>
         </div>
@@ -66,7 +65,7 @@ export default function page() {
               <div className="flex flex-col gap-y-4">
                 <div className="p-4 border border-[#98aecd] rounded-xl flex justify-between">
                   <h5 className="text-lg">Job Title</h5>
-                  <button className="p-1 px-4 border rounded-xl">View</button>
+                  <Button className="p-1 px-4 border rounded-xl">View</Button>
                 </div>
               </div>
             </TabsContent>
@@ -75,7 +74,7 @@ export default function page() {
               <div className="flex flex-col gap-y-4">
                 <div className="p-4 border border-[#98aecd] rounded-xl flex justify-between">
                   <h5 className="text-lg">Previous Job Title</h5>
-                  <button className="p-1 px-4 border rounded-xl">View</button>
+                  <Button className="p-1 px-4 border rounded-xl">View</Button>
                 </div>
               </div>
             </TabsContent>

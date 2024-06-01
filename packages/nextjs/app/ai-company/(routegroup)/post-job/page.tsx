@@ -1,3 +1,6 @@
+import { Input } from "~~/components/@/components/ui/input";
+import { Textarea } from "~~/components/@/components/ui/textarea";
+
 export default function page() {
   return (
     <div className="w-11/12 max-w-screen-md mx-auto py-4">
@@ -9,7 +12,7 @@ export default function page() {
               <label className="block text-sm font-bold mb-2" htmlFor="title">
                 Title
               </label>
-              <input
+              <Input
                 className="w-full px-3 py-2 bg-transparent leading-tight border rounded focus:outline-none focus:shadow-outline"
                 id="title"
                 type="text"
@@ -20,19 +23,21 @@ export default function page() {
               <label className="block text-sm font-bold mb-2" htmlFor="description">
                 Description
               </label>
-              <textarea
+              <Textarea
                 className="w-full px-3 py-2 bg-transparent leading-tight border rounded focus:outline-none focus:shadow-outline"
                 id="description"
                 placeholder="Description"
-              ></textarea>
+              />
             </div>
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2" htmlFor="raw-data">
                 Raw Data
               </label>
-              <div className="border-dashed border-2 border-gray-400 py-12 flex justify-center items-center rounded">
-                <span className="text-gray-500">+ Upload Folder</span>
-              </div>
+              <Input
+              type="file"
+                className="border-dashed border-2 text-center border-gray-400 py-12 flex justify-center items-center rounded"
+                placeholder="+ Upload Folder"
+              />
             </div>
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2" htmlFor="annotator-type">
