@@ -1,16 +1,14 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/@/components/ui/tabs";
 import { View } from "lucide-react";
 
 export default function page() {
-  const handleOngoingJob = () => {
-    console.log("View ongoing");
-  };
-
-  const handlePreviousJob = () => {
-    console.log("View ongoing");
-  };
+  const [title, setTitle] = useState<string>("Job Title");
+  const [description, setDescription] = useState<string>(
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nesciunt, eos corporis inventorerecusandae quibusdam minima ipsam, non quaerat quidem iste nulla eligendi in saepe optio consequaturmodi quis! Magnam.",
+  );
 
   return (
     <div className="py-10 w-11/12 max-w-screen-xl px-10">
@@ -40,12 +38,8 @@ export default function page() {
           <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6 bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
-                <h5 className="text-xl font-semibold  ">Job Title</h5>
-                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nesciunt, eos corporis inventore
-                  recusandae quibusdam minima ipsam, non quaerat quidem iste nulla eligendi in saepe optio consequatur
-                  modi quis! Magnam.
-                </p>
+                <h5 className="text-xl font-semibold  ">{title}</h5>
+                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">{description}</p>
               </div>
               <Link href={`/ai-company/jobs/fda`}>
                 <View className="" />
@@ -57,11 +51,9 @@ export default function page() {
           <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6 bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
-                <h5 className="text-xl font-semibold  ">Job Title</h5>
+                <h5 className="text-xl font-semibold  ">{title}</h5>
                 <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nesciunt, eos corporis inventore
-                  recusandae quibusdam minima ipsam, non quaerat quidem iste nulla eligendi in saepe optio consequatur
-                  modi quis! Magnam.
+                  {description}
                 </p>
               </div>
               <Link href={`/ai-company/jobs/fda`}>

@@ -29,6 +29,10 @@ export default function Page() {
     console.log("View button clicked for", name, walletAddress);
   };
 
+  const handleResolve = () => {
+    console.log("handle resolve clicked")
+  }
+
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto my-6 border border-[#98aecd] rounded-[10px]  bg-[#98aecd] bg-opacity-10">
       <div className="w-[95%] px-2 mx-auto py-8">
@@ -38,7 +42,7 @@ export default function Page() {
 
             {/* if annotator is annotating  */}
             {true ? (
-              <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+              <button onClick={handleAnnotate} className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
                 Annotate
               </button>
             ) : (
@@ -49,22 +53,20 @@ export default function Page() {
           </div>
           <div className="flex justify-between gap-4 w-fit items-center h-8 ">
             <p className="text-lg font-medium text-white/70">
-              Reward: <span className="text-xl font-normal text-white">100 Matic</span>
+              Reward: <span className="text-xl font-normal text-white">{reward}</span>
             </p>
             <div className="h-5 w-0.5 bg-white" />
             <p className="text-lg font-medium text-white/70">
-              Annotator: <span className="text-xl font-normal text-white">Pro</span>
+              Annotator: <span className="text-xl font-normal text-white">{annotator}</span>
             </p>
           </div>
           <p className="max-w-4xl text-white text-opacity-80">
-            <span className="text-lg font-semibold text-white pr-2">Description:</span> Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Eius recusandae non, quaerat soluta commodi repellendus porro debitis atque
-            tempore nulla beatae, voluptatibus dicta omnis iste voluptatum sunt numquam aperiam error.
+            <span className="text-lg font-semibold text-white pr-2">Description:</span> {description}
           </p>
           <div className="flex gap-8 pt-6">
-            <button className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+            <button onClick={handleOpenAnnotator} className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
               Open Annotator{" "}
-              <span className="absolute right-[-1em] -top-7 bg-[#2A2F40] border p-1 px-2 rounded-[8px] text-[#edd346] font-medium">
+              <span onClick={handleDownloadRawData} className="absolute right-[-1em] -top-7 bg-[#2A2F40] border p-1 px-2 rounded-[8px] text-[#edd346] font-medium">
                 Coming soon
               </span>{" "}
             </button>
@@ -100,11 +102,11 @@ export default function Page() {
                 <div className="flex items-center gap-x-4">
                   <div className="size-10 bg-white rounded-full" />
                   <div>
-                    <h5 className="text-2xl font-semibold capitalize">name</h5>
-                    <p className="w-11/12">0x123456789</p>
+                    <h5 className="text-2xl font-semibold capitalize">{name}</h5>
+                    <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
-                <button className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                <button onClick={handleView} className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
                   View
                 </button>
               </div>
@@ -116,11 +118,11 @@ export default function Page() {
                 <div className="flex items-center gap-x-4">
                   <div className="size-10 bg-white rounded-full" />
                   <div>
-                    <h5 className="text-2xl font-semibold capitalize">name</h5>
-                    <p className="w-11/12">0x123456789</p>
+                    <h5 className="text-2xl font-semibold capitalize">{name}</h5>
+                    <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
-                <button className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                <button onClick={handleView} className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
                   View
                 </button>
               </div>
@@ -133,19 +135,19 @@ export default function Page() {
                 <div className="flex items-center gap-x-4">
                   <div className="size-10 bg-white rounded-full" />
                   <div>
-                    <h5 className="text-2xl font-semibold">name</h5>
-                    <p className="w-11/12">0x123456789</p>
+                    <h5 className="text-2xl font-semibold">{name}</h5>
+                    <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
                 <XIcon />
                 <div className="flex items-center gap-x-4">
                   <div className="size-10 bg-white rounded-full" />
                   <div>
-                    <h5 className="text-2xl font-semibold">name</h5>
-                    <p className="w-11/12">0x123456789</p>
+                    <h5 className="text-2xl font-semibold">{name}</h5>
+                    <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
-                <button className="py-2 px-6 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                <button onClick={handleResolve} className="py-2 px-6 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
                   Resolve
                 </button>
               </div>

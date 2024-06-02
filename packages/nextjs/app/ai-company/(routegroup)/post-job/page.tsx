@@ -7,6 +7,7 @@ export default function Page() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [rawData, setRawData] = useState<File | null>(null);
+  const [rawDataLink, setRawDataLink] = useState<string>("");
   const [annotatorType, setAnnotatorType] = useState<string>("");
   const [rewardPool, setRewardPool] = useState<string>("");
 
@@ -76,6 +77,8 @@ export default function Page() {
                 className="border border-[#98aecd] rounded-[10px]  px-3 py-4  bg-[#98aecd] bg-opacity-10 focus:outline-none focus:shadow-outline"
                 id="title"
                 type="text"
+                value={rawDataLink}
+                onChange={(e) => setRawDataLink(e.target.value)}
                 placeholder="xyz.com/upload/files"
               />
             </div>
