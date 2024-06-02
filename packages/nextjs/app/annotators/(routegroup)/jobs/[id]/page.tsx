@@ -3,6 +3,16 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
 import { XIcon } from "lucide-react";
+import { Button } from "~~/components/@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~~/components/@/components/ui/dialog";
+import { Input } from "~~/components/@/components/ui/input";
 
 export default function Page() {
   const [reward, setReward] = useState("100 Matic");
@@ -30,8 +40,8 @@ export default function Page() {
   };
 
   const handleResolve = () => {
-    console.log("handle resolve clicked")
-  }
+    console.log("handle resolve clicked");
+  };
 
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto my-6 border border-[#98aecd] rounded-[10px]  bg-[#98aecd] bg-opacity-10">
@@ -41,14 +51,57 @@ export default function Page() {
             <h5 className="text-5xl font-semibold">JOB 1</h5>
 
             {/* if annotator is annotating  */}
-            {true ? (
-              <button onClick={handleAnnotate} className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+            {false ? (
+              <button
+                onClick={handleAnnotate}
+                className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
+              >
                 Annotate
               </button>
             ) : (
-              <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
-                Submit
-              </button>
+              <Dialog>
+                <DialogTrigger className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                  Submit
+                </DialogTrigger>
+                <DialogContent className="bg-[#2A2F40] border border-[#98aecd] rounded-xl">
+                  <DialogHeader>
+                    <DialogTitle>Submit Annotated Data</DialogTitle>
+                    <DialogDescription>
+                      <form>
+                        <div className="py-10 flex flex-col gap-y-10 items-center text-center">
+                          <p>
+                            {" "}
+                            Please upload a folder and dont forget to follow the rules displayed in the job description
+                          </p>
+                          <Input
+                            type="file"
+                            className="border text-center  border-[#98aecd] rounded-[10px]  px-3 py-20 w-full  bg-[#98aecd] bg-opacity-10 flex justify-center items-center"
+                            placeholder="+ Upload Folder"
+                            // onChange={handleFileChange}
+                          />
+                          <div className="mb-4 w-full">
+                            <label className="block text-left font-semibold py-2" htmlFor="title">
+                              Annotated Data Link
+                            </label>
+                            <p
+                              className="border border-[#98aecd] rounded-[10px]  px-3 py-4  bg-[#98aecd] bg-opacity-10 focus:outline-none focus:shadow-outline"
+                              id="title"
+                            >
+                              xyz.com
+                            </p>
+                          </div>
+                          <Button
+                            type="submit"
+                            className="border border-[#98aecd] rounded-[10px]  px-3 py-4  bg-[#98aecd] bg-opacity-10 "
+                          >
+                            Submit
+                          </Button>
+                        </div>
+                      </form>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             )}
           </div>
           <div className="flex justify-between gap-4 w-fit items-center h-8 ">
@@ -64,9 +117,15 @@ export default function Page() {
             <span className="text-lg font-semibold text-white pr-2">Description:</span> {description}
           </p>
           <div className="flex gap-8 pt-6">
-            <button onClick={handleOpenAnnotator} className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+            <button
+              onClick={handleOpenAnnotator}
+              className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
+            >
               Open Annotator{" "}
-              <span onClick={handleDownloadRawData} className="absolute right-[-1em] -top-7 bg-[#2A2F40] border p-1 px-2 rounded-[8px] text-[#edd346] font-medium">
+              <span
+                onClick={handleDownloadRawData}
+                className="absolute right-[-1em] -top-7 bg-[#2A2F40] border p-1 px-2 rounded-[8px] text-[#edd346] font-medium"
+              >
                 Coming soon
               </span>{" "}
             </button>
@@ -106,7 +165,10 @@ export default function Page() {
                     <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
-                <button onClick={handleView} className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                <button
+                  onClick={handleView}
+                  className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
+                >
                   View
                 </button>
               </div>
@@ -122,7 +184,10 @@ export default function Page() {
                     <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
-                <button onClick={handleView} className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                <button
+                  onClick={handleView}
+                  className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
+                >
                   View
                 </button>
               </div>
@@ -147,7 +212,10 @@ export default function Page() {
                     <p className="w-11/12">{walletAddress}</p>
                   </div>
                 </div>
-                <button onClick={handleResolve} className="py-2 px-6 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                <button
+                  onClick={handleResolve}
+                  className="py-2 px-6 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
+                >
                   Resolve
                 </button>
               </div>

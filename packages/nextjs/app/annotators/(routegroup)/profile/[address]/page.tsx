@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import profile from "../../../assets/Pepe.jpeg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/@/components/ui/tabs";
+import profile from "../../../../../assets/Pepe.jpeg";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
 import { View } from "lucide-react";
 
-export default function page() {
+export default function page({ params }: { params: { address: string } }) {
+  const address = params.address;
+  console.log(address);
   const handleChallengeAnnotation = () => {
     console.log("handleChallengeAnnotation");
   };
