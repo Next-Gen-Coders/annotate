@@ -71,6 +71,8 @@ contract DataMarketplace {
 	Job[] public allAnnotationJobs;
 	Annotator[] public allAnnotatorsProfile;
 	AICompany[] public allAiCompanyProfiles;
+	Submission[] public allSubmissions;
+	ChallengedSubmission[] public allChallenges;
 
 	mapping(address => uint256[]) public addressToJobs;
 	mapping(address => AICompany) public addressToAICompany;
@@ -546,8 +548,20 @@ contract DataMarketplace {
 
 		submissionCounter++;
 		job.submissions.push(submissionCounter);
+		// Add this line
 		annotator.submissions.push(submissionCounter);
 		jobToSubmissions[_jobID].push(
+			Submission(
+				submissionCounter,
+				_jobID,
+				msg.sender,
+				_folderLink,
+				block.timestamp,
+				annotator.annotatorTier,
+				false
+			)
+		);
+		allSubmissions.push(
 			Submission(
 				submissionCounter,
 				_jobID,
@@ -593,6 +607,20 @@ contract DataMarketplace {
 			)
 		);
 		submission.isChallenged = true;
+
+		allChallenges.push(
+			ChallengedSubmission(
+				challengeCounter,
+				msg.sender,
+				annotator.annotatorTier,
+				submission.annotator,
+				submission.annotatorType,
+				submission.folderLink,
+				block.timestamp,
+				ActionType.Pending,
+				false
+			)
+		); 
 	}
 
 	/// @notice Returns all annotator profiles
@@ -619,5 +647,21 @@ contract DataMarketplace {
 	/// @return An array of Job structs containing all annotation jobs
 	function getAllJobs() public view returns (Job[] memory) {
 		return allAnnotationJobs;
+	}
+
+	/// @notice Returns all submissions
+	/// @return An array of Submission structs containing all submissions
+	function getAllSubmissions() public view returns (Submission[] memory) {
+		return allSubmissions;
+	}
+
+	/// @notice Returns all challenges
+	/// @return An array of ChallengedSubmission structs containing all challenges
+	function getAllChallenges()
+		public
+		view
+		returns (ChallengedSubmission[] memory)
+	{
+		return allChallenges;
 	}
 }
