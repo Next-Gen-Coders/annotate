@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Input } from "~~/components/@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~~/components/@/components/ui/select";
@@ -43,7 +45,7 @@ export default function Page() {
                 type="text"
                 placeholder="Title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={e => setTitle(e.target.value)}
               />
             </div>
             <div className="mb-4">
@@ -55,7 +57,7 @@ export default function Page() {
                 id="description"
                 placeholder="Description"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={e => setDescription(e.target.value)}
               />
             </div>
             <div className="mb-4">
@@ -78,14 +80,12 @@ export default function Page() {
                 id="title"
                 type="text"
                 value={rawDataLink}
-                onChange={(e) => setRawDataLink(e.target.value)}
+                onChange={e => setRawDataLink(e.target.value)}
                 placeholder="xyz.com/upload/files"
               />
             </div>
             <div className="mb-4">
-              <p className="block font-semibold py-2">
-                Annotator Type
-              </p>
+              <p className="block font-semibold py-2">Annotator Type</p>
               <Select>
                 <SelectTrigger className="w-full border border-[#98aecd] rounded-[10px]  px-3 py-4  bg-[#98aecd] bg-opacity-10">
                   <SelectValue placeholder="Theme" />
@@ -98,9 +98,7 @@ export default function Page() {
               </Select>
             </div>
             <div className="mb-4">
-              <p className="block font-semibold py-2">
-                Reward Pool
-              </p>
+              <p className="block font-semibold py-2">Reward Pool</p>
               <Select>
                 <SelectTrigger className="w-full border border-[#98aecd] rounded-[10px]  px-3 py-4  bg-[#98aecd] bg-opacity-10">
                   <SelectValue placeholder="Theme" />

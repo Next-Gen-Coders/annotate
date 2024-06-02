@@ -11,7 +11,6 @@ import { Textarea } from "~~/components/@/components/ui/textarea";
 import { AiCompanyProfile, AnnotatorProfile } from "~~/types/Types";
 import { deployedContractABI_And_Address } from "~~/utils/contractInfo";
 
-
 export default function Login() {
   const { address, isConnected } = useAccount();
   const [aiCompanyProfiles, setAiCompanyProfiles] = useState<AiCompanyProfile[]>([]);

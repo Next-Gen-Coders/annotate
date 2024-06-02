@@ -1,14 +1,75 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import profile from "../../../../../assets/Pepe.jpeg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
-import { View } from "lucide-react";
+import { useReadContracts } from "wagmi";
+import JobCard from "~~/components/JobCard";
+import { AiCompanyProfile, Job } from "~~/types/Types";
+import { deployedContractABI_And_Address } from "~~/utils/contractInfo";
+import { getShortDisplayString } from "~~/utils/helper";
 
-export default function page({ params }: { params: { address: string } }) {
+export default function AiCompanyProfilePage({ params }: { params: { address: string } }) {
   const address = params.address;
-  console.log(address);
+
+  const [name, setName] = useState("Name");
+  const [description, setDescription] = useState("");
+  const [ongoingJobs, setOngoingJobs] = useState<Job[]>([]);
+  const [previousJobs, setPreviousJobs] = useState<Job[]>([]);
+  const [listOfAllJobs, setlistOfAllJobs] = useState([]);
+
+  const { data: contractData } = useReadContracts({
+    contracts: [
+      {
+        ...deployedContractABI_And_Address,
+        functionName: "getAllAICompanyProfiles",
+        args: [],
+      },
+      {
+        ...deployedContractABI_And_Address,
+        functionName: "getAllJobs",
+        args: [],
+      },
+    ],
+  });
+
+  useEffect(() => {
+    if (contractData && contractData[0].result && contractData[1].result) {
+      const listOfAiCompanies: AiCompanyProfile[] = [...contractData[0].result];
+      const currentProfile = listOfAiCompanies.find(
+        profile => profile.companyAddress.toLowerCase() === address?.toLowerCase(),
+      );
+
+      if (currentProfile) {
+        setName(currentProfile.name);
+        setDescription(currentProfile.description);
+
+        const ongoingJobsList: Job[] = [];
+        const previousJobsList: Job[] = [];
+
+        currentProfile.jobs.forEach(jobID => {
+          if (contractData[1]) {
+            const job = contractData[1].result?.find((j: Job) => j.jobID === jobID);
+            if (job) {
+              if (job.isActive) {
+                ongoingJobsList.push(job);
+              } else {
+                previousJobsList.push(job);
+              }
+            }
+          }
+        });
+
+        setOngoingJobs(ongoingJobsList);
+        setPreviousJobs(previousJobsList);
+      }
+    }
+  }, [contractData, address]);
+
+  console.log(contractData, ongoingJobs, previousJobs);
+
   const handleChallengeAnnotation = () => {
     console.log("handleChallengeAnnotation");
   };
@@ -23,38 +84,31 @@ export default function page({ params }: { params: { address: string } }) {
             <Image src={profile} className="h-24 w-24 rounded-full shadow shadow-white" alt="profile" />
             <div className="flex justify-between items-center w-full ">
               <div>
-                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl py-2">AI company</p>
-                <div className=" flex gap-4">
-                  <p className="py-1 px-2 w-fit text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-[6px] text-[#bcd0ec] hover:text-[#edd346]">
-                    Pro
-                  </p>
-                  0x123456789
-                </div>
+                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl py-2">{name}</p>
+                <div className=" flex gap-4">{getShortDisplayString(address)}</div>
               </div>
               {/* <Edit /> */}
             </div>
           </div>
 
-          <p className="mt-4 md:mt-6 text-sm opacity-80">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi neque optio consequatur distinctio
-            commodi aut omnis eveniet eligendi, vero repudiandae pariatur, labore ipsum veritatis dolores quibusdam
-            eaque explicabo rerum possimus.
-          </p>
+          <p className="mt-4 md:mt-6 text-sm opacity-80">{description}</p>
         </div>
 
         <div className="flex gap-4 py-8">
-          <button
+          <Link
+            href={"/home"}
             className="py-2 px-4 w-fit border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:text-[#edd346] btn-shadow  bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-[10px] text-[#bcd0ec]"
             onClick={() => handleAnnotateData()}
           >
             Buy/Sell Data
-          </button>
-          <button
+          </Link>
+          <Link
+            href={"/ai-company/post-job"}
             className="py-2 px-4 w-fit border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:text-[#edd346] btn-shadow  bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-[10px] text-[#bcd0ec]"
             onClick={() => handleChallengeAnnotation()}
           >
             Get Data Annotated
-          </button>
+          </Link>
         </div>
 
         <div className="py-2">
@@ -81,38 +135,14 @@ export default function page({ params }: { params: { address: string } }) {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="Ongoing">
-              <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
-                <div className="flex justify-between items-center">
-                  <div className="flex flex-col gap-y-1">
-                    <h5 className="text-xl font-semibold  ">Job Title</h5>
-                    <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nesciunt, eos corporis inventore
-                      recusandae quibusdam minima ipsam, non quaerat quidem iste nulla eligendi in saepe optio
-                      consequatur modi quis! Magnam.
-                    </p>
-                  </div>
-                  <Link href="/ai-company/jobs">
-                    <View className="" />
-                  </Link>
-                </div>
-              </div>
+              {ongoingJobs.map(job => (
+                <JobCard key={job.jobID} job={job} />
+              ))}
             </TabsContent>
             <TabsContent value="Previous">
-              <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
-                <div className="flex justify-between items-center">
-                  <div className="flex flex-col gap-y-1">
-                    <h5 className="text-xl font-semibold  ">Job Title</h5>
-                    <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nesciunt, eos corporis inventore
-                      recusandae quibusdam minima ipsam, non quaerat quidem iste nulla eligendi in saepe optio
-                      consequatur modi quis! Magnam.
-                    </p>
-                  </div>
-                  <Link href="/ai-company/jobs">
-                    <View className="" />
-                  </Link>
-                </div>
-              </div>
+              {previousJobs.map(job => (
+                <JobCard key={job.jobID} job={job} />
+              ))}
             </TabsContent>
           </Tabs>
         </div>
