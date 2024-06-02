@@ -18,7 +18,6 @@ export default function AiCompanyProfilePage({ params }: { params: { address: st
   const [description, setDescription] = useState("");
   const [ongoingJobs, setOngoingJobs] = useState<Job[]>([]);
   const [previousJobs, setPreviousJobs] = useState<Job[]>([]);
-  const [listOfAllJobs, setlistOfAllJobs] = useState([]);
 
   const { data: contractData } = useReadContracts({
     contracts: [
@@ -53,7 +52,7 @@ export default function AiCompanyProfilePage({ params }: { params: { address: st
           if (contractData[1]) {
             const job = contractData[1].result?.find((j: Job) => j.jobID === jobID);
             if (job) {
-              if (job.isActive) {
+              if (job.isActive === true) {
                 ongoingJobsList.push(job);
               } else {
                 previousJobsList.push(job);
