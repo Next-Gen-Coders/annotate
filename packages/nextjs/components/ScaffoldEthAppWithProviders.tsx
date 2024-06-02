@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import "../styles/globals.css";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
@@ -26,9 +28,9 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        {/* <Header /> */}
+        <Header />
         <main className="relative flex flex-col flex-1">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
       <Toaster />
     </>
