@@ -5,7 +5,7 @@
 :root,
 html,
 body {
-  @apply h-full w-full;
+  @apply h-full w-full bg-white;
 }
 
 @layer base {
@@ -79,4 +79,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.radial-bg {
+  background: rgb(56, 89, 144);
+  background: radial-gradient(circle, rgba(56, 89, 144, 0.704860826166404) 0%, rgba(252, 70, 107, 0) 41%);
 }

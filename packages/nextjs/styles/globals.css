@@ -3,21 +3,22 @@
 @import "tailwindcss/utilities";
 
 @font-face {
-  font-family: 'Akaya Telivigala';
-  src: url('./fonts/akaya-telivigala-latin-400-normal.ttf') format('truetype');
+  font-family: "Akaya Telivigala";
+  src: url("./fonts/akaya-telivigala-latin-400-normal.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+}
+
+:root,
+html,
+body {
+  @apply h-full w-full bg-[#070815];
 }
 
 :root,
 [data-theme] {
   background: oklch(var(--b2));
   @apply h-full w-full;
-}
-
-body {
-  min-height: 100vh;
-  background-color: #070815
 }
 
 .btn {
@@ -32,4 +33,9 @@ body {
   font-family: "Akaya Telivigala", system-ui;
   font-weight: 400;
   font-style: normal;
+}
+
+.radial-bg {
+  background: rgb(56, 89, 144);
+  background: radial-gradient(circle, rgba(56, 89, 144, 0.704860826166404) 0%, rgba(252, 70, 107, 0) 41%);
 }
