@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "~~/components/frontend/Hero";
 import Navbar from "~~/components/frontend/Navbar";
 
-const page = () => {
+const Home = () => {
   return (
     <div className="min-h-screen w-full bg-[#070815]">
       <Navbar />
@@ -11,4 +11,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Home;

@@ -1,15 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useReadContracts, useWriteContract } from "wagmi";
 import { Button } from "~~/components/@/components/ui/button";
 import { Input } from "~~/components/@/components/ui/input";
 import { Textarea } from "~~/components/@/components/ui/textarea";
+import { AiCompanyProfile, AnnotatorProfile } from "~~/types/Types";
 import { deployedContractABI_And_Address } from "~~/utils/contractInfo";
 
 export default function Login() {
   const { address, isConnected } = useAccount();
+  const [aiCompanyProfiles, setAiCompanyProfiles] = useState<AiCompanyProfile[]>([]);
+  const [annotatorProfiles, setAnnotatorProfiles] = useState<AnnotatorProfile[]>([]);
 
   const [companyName, setCompanyName] = useState("");
   const [description, setDescription] = useState("");
@@ -31,16 +34,28 @@ export default function Login() {
     ],
   });
 
-  // if the user is already present in the array when connecting then transfer them to the respective page but if opp then give a toast saying you are a dvertiser cannot login as annotator
+  console.log(contractData);
+
   const handleRegister = () => {
-    console.log("Company Name:", companyName);
-    console.log("Description:", description);
     writeContract({
       ...deployedContractABI_And_Address,
       functionName: "createAICompanyProfile",
       args: [companyName, description],
     });
   };
+
+  useEffect(() => {
+    if (contractData && contractData[0].result) {
+      const listOfAiCompanies: AiCompanyProfile[] = [...contractData[0].result];
+      setAiCompanyProfiles(listOfAiCompanies);
+    }
+    if (contractData && contractData[1].result) {
+      const listOfAnnotators: AnnotatorProfile[] = [...contractData[1].result];
+      setAnnotatorProfiles(listOfAnnotators);
+    }
+  }, []);
+
+  console.log(aiCompanyProfiles, annotatorProfiles);
 
   return (
     <div className="flex flex-col h-full w-full min-h-screen max-w-screen-xl items-center justify-center">

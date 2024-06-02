@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +10,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const [name, setName] = useState("Name");
   const [walletAddress, setWalletAddress] = useState("0x123456789");
   const [description, setDescription] = useState(
-    "This is the description of sadfasdfsdf asd fas df asdf asd fa sdf asdf af a"
+    "This is the description of sadfasdfsdf asd fas df asdf asd fa sdf asdf af a",
   );
 
   const handleLogout = () => {
