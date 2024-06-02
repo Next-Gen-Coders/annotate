@@ -63,7 +63,7 @@ export default function JobPage() {
       <div className="w-[95%] px-2 mx-auto py-8">
         <div className="flex flex-col gap-y-6 pb-10">
           <div className="flex justify-between items-center">
-            <h5 className="text-5xl font-semibold">{jobDetails?.title}</h5>
+            <h5 className="text-5xl font-semibold">Raw Img Data</h5>
             <button
               onClick={jobDetails?.isActive ? endJob : distributeReward}
               className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
@@ -82,7 +82,8 @@ export default function JobPage() {
             </p>
           </div>
           <p className="max-w-4xl text-white text-opacity-80">
-            <span className="text-lg font-semibold text-white pr-2">Description:</span> {jobDetails?.description}
+            <span className="text-lg font-semibold text-white pr-2">Description: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit cumque totam ea non facilis autem laboriosam, nesciunt accusantium ab natus, quibusdam itaque iste explicabo! Esse facere pariatur soluta praesentium dolore.
+          </span>
           </p>
           <div className="flex gap-8 pt-6">
             {/* <button className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">

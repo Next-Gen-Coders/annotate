@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import profile from "../../../../../assets/Pepe.jpeg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
+import { View } from "lucide-react";
 import { useReadContracts } from "wagmi";
 import JobCard from "~~/components/JobCard";
 import { AiCompanyProfile, Job } from "~~/types/Types";
@@ -83,7 +84,7 @@ export default function AiCompanyProfilePage({ params }: { params: { address: st
             <Image src={profile} className="h-24 w-24 rounded-full shadow shadow-white" alt="profile" />
             <div className="flex justify-between items-center w-full ">
               <div>
-                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl py-2">{name}</p>
+                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl py-2">AI Company</p>
                 <div className=" flex gap-4">{getShortDisplayString(address)}</div>
               </div>
               {/* <Edit /> */}
@@ -134,6 +135,17 @@ export default function AiCompanyProfilePage({ params }: { params: { address: st
               </TabsTrigger>
             </TabsList>
             <TabsContent value="Ongoing">
+              <div className="border border-[#98aecd] rounded-[10px] px-3 py-6 bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-1">
+                    <h5 className="text-xl font-semibold">Name</h5>
+                    <p className="text-sm text-white opacity-70  w-11/12 max-w-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus reiciendis eum, sint eius eveniet totam dolorum voluptate laborum non provident fugiat pariatur debitis expedita harum nisi repellat velit? Asperiores, cupiditate.</p>
+                  </div>
+                  <Link href={`/ai-company/jobs/1`}>
+                    <View className="" />
+                  </Link>
+                </div>
+              </div>
               {ongoingJobs.map(job => (
                 <JobCard key={job.jobID} job={job} />
               ))}

@@ -57,20 +57,20 @@ export default function page({ params }: { params: { address: string } }) {
         const previousJobsList: any[] = [];
 
         // @ts-ignore
-        currentProfile.submissions.forEach(jobID => {
-          if (contractData[1]) {
-            const job = contractData[1].result?.find(j => j === jobID);
-            if (job) {
-              // @ts-ignore
-              if (isChallenged === true) {
-                ongoingJobsList.push(job);
-              } else {
-                previousJobsList.push(job);
-              }
-            }
-            setsubmissions(job);
-          }
-        });
+        // currentProfile.submissions.forEach(jobID => {
+        //   if (contractData[1]) {
+        //     const job = contractData[1].result?.find(j => j === jobID);
+        //     if (job) {
+        //       // @ts-ignore
+        //       if (isChallenged === true) {
+        //         ongoingJobsList.push(job);
+        //       } else {
+        //         previousJobsList.push(job);
+        //       }
+        //     }
+        //     setsubmissions(job);
+        //   }
+        // });
 
         // setOngoingJobs(ongoingJobsList);
         // setPreviousJobs(previousJobsList);
@@ -148,24 +148,28 @@ export default function page({ params }: { params: { address: string } }) {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="Ongoing">
-              {submissions.map((submission, index) => (
-                <div
-                  key={index}
-                  className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4"
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex flex-col gap-y-1">
-                      <h5 className="text-xl font-semibold  ">{submission.title}</h5>
-                      <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">
-                        {submission.description}
-                      </p>
-                    </div>
-                    <Link href="/ai-company/jobs">
-                      <View className="" />
-                    </Link>
+              {/* {submissions.map((submission, index) => ( */}
+              <div
+                // key={index}
+                className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4"
+              >
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-1">
+                    <h5 className="text-xl font-semibold  ">
+                      {/* {submission.title} */}
+                      Raw IMG Data
+                      </h5>
+                    <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-2xl">
+                      {/* {submission.description} */}
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex corporis illo perferendis commodi pariatur, animi amet alias necessitatibus mollitia eius, qui eum veniam ut nulla. Quod debitis temporibus quae eos.
+                    </p>
                   </div>
+                  <Link href="/ai-company/jobs">
+                    <View className="" />
+                  </Link>
                 </div>
-              ))}
+              </div>
+              {/* ))} */}
             </TabsContent>
             <TabsContent value="Previous">
               <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">

@@ -56,7 +56,7 @@ const AiCompanyProfileLayout = ({ children }: { children: React.ReactNode }) => 
                 <Image src={profile} className="h-12 w-12 rounded-full" alt="profile" />
 
                 <div className="flex-grow">
-                  <p className="text-lg font-semibold">{name}</p>
+                  <p className="text-lg font-semibold">AI Company</p>
                   <p className="text-sm text-[#98aecd]">{getShortDisplayString(address)}</p>
                 </div>
               </div>
