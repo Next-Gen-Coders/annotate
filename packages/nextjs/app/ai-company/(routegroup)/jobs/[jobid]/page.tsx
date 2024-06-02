@@ -1,6 +1,14 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
 import { XIcon } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~~/components/@/components/ui/dialog";
 
 export default function page() {
   return (
@@ -9,17 +17,9 @@ export default function page() {
         <div className="flex flex-col gap-y-6 pb-10">
           <div className="flex justify-between items-center">
             <h5 className="text-5xl font-semibold">JOB 1</h5>
-
-            {/* if annotator is annotating  */}
-            {true ? (
-              <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
-                Annotate
-              </button>
-            ) : (
-              <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
-                Submit
-              </button>
-            )}
+            <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+              End
+            </button>
           </div>
           <div className="flex justify-between gap-4 w-fit items-center h-8 ">
             <p className="text-lg font-medium text-white/70">
@@ -40,7 +40,7 @@ export default function page() {
               Open Annotator{" "}
               <span className="absolute right-[-1em] -top-7 bg-[#2A2F40] border p-1 px-2 rounded-[8px] text-[#edd346] font-medium">
                 Coming soon
-              </span>{" "}
+              </span>
             </button>
             <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
               Download Raw Data
@@ -94,9 +94,36 @@ export default function page() {
                     <p className="w-11/12">0x123456789</p>
                   </div>
                 </div>
-                <button className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
-                  View
-                </button>
+
+                <Dialog>
+                  <DialogTrigger className="py-2 px-8 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                    View
+                  </DialogTrigger>
+                  <DialogContent className="bg-[#2A2F40] border border-[#98aecd] rounded-xl">
+                    <DialogHeader>
+                      <DialogTitle>Submission</DialogTitle>
+                      <DialogDescription>
+                        <div className="flex flex-col gap-y-6  justify-between py-6">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-x-4">
+                              <div className="size-10 bg-white rounded-full" />
+                              <div>
+                                <h5 className="text-2xl font-semibold capitalize">name</h5>
+                                <div className=" flex gap-4">0x123456789</div>
+                              </div>
+                            </div>
+                            <p className="py-1 px-2 w-fit text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-[6px] text-[#bcd0ec] hover:text-[#edd346]">
+                              Pro
+                            </p>
+                          </div>
+                          <button className="py-2 px-4 h-fit w-full bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+                            Download Raw Data
+                          </button>
+                        </div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </TabsContent>

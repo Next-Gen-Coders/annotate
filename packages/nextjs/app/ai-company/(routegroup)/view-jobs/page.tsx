@@ -39,14 +39,14 @@ export default function page() {
                   modi quis! Magnam.
                 </p>
               </div>
-              <Link href="/ai-company/jobs">
+              <Link href={`/ai-company/jobs/fda`}>
                 <View className="" />
               </Link>
             </div>
           </div>
         </TabsContent>
         <TabsContent value="Previous">
-        <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6 bg-opacity-10 flex flex-col gap-y-4">
+          <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6 bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
                 <h5 className="text-xl font-semibold  ">Job Title</h5>
@@ -56,7 +56,7 @@ export default function page() {
                   modi quis! Magnam.
                 </p>
               </div>
-              <Link href="/ai-company/jobs">
+              <Link href={`/ai-company/jobs/fda`}>
                 <View className="" />
               </Link>
             </div>
