@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/@/components/ui/tabs";
 import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/@/components/ui/tabs";
 
 export default function Page() {
   const [name, setName] = useState("name");
   const [description, setDescription] = useState(
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur earum iusto libero cum quo expedita corrupti dolor quis. Culpa voluptas iste placeat voluptate eligendi impedit corporis libero commodi adipisci!"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur earum iusto libero cum quo expedita corrupti dolor quis. Culpa voluptas iste placeat voluptate eligendi impedit corporis libero commodi adipisci!",
   );
 
   return (
@@ -42,12 +42,8 @@ export default function Page() {
           <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
-                <h5 className="text-xl font-semibold">name</h5>
-                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur earum iusto libero cum quo
-                  expedita corrupti dolor quis. Culpa voluptas iste placeat voluptate eligendi impedit corporis libero
-                  commodi adipisci!
-                </p>
+                <h5 className="text-xl font-semibold">{name}</h5>
+                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">{description}</p>
               </div>
               <Link
                 href={"/annotators/jobs/1"}
@@ -63,12 +59,8 @@ export default function Page() {
           <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
-                <h5 className="text-xl font-semibold">name</h5>
-                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur earum iusto libero cum quo
-                  expedita corrupti dolor quis. Culpa voluptas iste placeat voluptate eligendi impedit corporis libero
-                  commodi adipisci!
-                </p>
+                <h5 className="text-xl font-semibold">{name}</h5>
+                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">{description}</p>
               </div>
               <Link
                 href={"/annotators/jobs/1"}
@@ -84,12 +76,8 @@ export default function Page() {
           <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
-                <h5 className="text-xl font-semibold">name</h5>
-                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur earum iusto libero cum quo
-                  expedita corrupti dolor quis. Culpa voluptas iste placeat voluptate eligendi impedit corporis libero
-                  commodi adipisci!
-                </p>
+                <h5 className="text-xl font-semibold">{name}</h5>
+                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">{description}</p>
               </div>
               <Link
                 href={"/annotators/jobs/1"}
@@ -105,12 +93,8 @@ export default function Page() {
           <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-y-1">
-                <h5 className="text-xl font-semibold">name</h5>
-                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tenetur earum iusto libero cum quo
-                  expedita corrupti dolor quis. Culpa voluptas iste placeat voluptate eligendi impedit corporis libero
-                  commodi adipisci!
-                </p>
+                <h5 className="text-xl font-semibold">{description}</h5>
+                <p className="text-sm text-white opacity-70 line-clamp-3 w-11/12 max-w-3xl">{description}</p>
               </div>
               <Link
                 href={"/annotators/jobs/1"}
