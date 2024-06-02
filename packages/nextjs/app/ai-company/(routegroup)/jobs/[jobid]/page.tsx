@@ -1,6 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
 import { XIcon } from "lucide-react";
+import { useReadContracts } from "wagmi";
 import {
   Dialog,
   DialogContent,
@@ -9,39 +13,79 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~~/components/@/components/ui/dialog";
+import { Job } from "~~/types/Types";
+import { deployedContractABI_And_Address } from "~~/utils/contractInfo";
 
-export default function page() {
+export default function JobPage() {
+  const params = useParams();
+  const jobID = params.jobid;
+
+  const [jobDetails, setJobDetails] = useState<Job | null>(null);
+
+  const { data: contractData } = useReadContracts({
+    contracts: [
+      {
+        ...deployedContractABI_And_Address,
+        functionName: "getAllJobs",
+        args: [],
+      },
+    ],
+  });
+
+  const endJob = () => {
+    console.log("end this job ");
+  };
+
+  const distributeReward = () => {
+    console.log("This is distribut reward ");
+  };
+
+  useEffect(() => {
+    if (contractData && contractData[0].result) {
+      const allJobs: Job[] = contractData[0].result.map(job => ({ ...job }));
+      const job = allJobs.find(job => job.jobID.toString() === jobID);
+      if (job) {
+        setJobDetails(job);
+        console.log(job);
+      }
+    }
+  }, [contractData, jobID]);
+
+  console.log(jobDetails);
+
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto my-6 border border-[#98aecd] rounded-[10px]  bg-[#98aecd] bg-opacity-10">
       <div className="w-[95%] px-2 mx-auto py-8">
         <div className="flex flex-col gap-y-6 pb-10">
           <div className="flex justify-between items-center">
-            <h5 className="text-5xl font-semibold">JOB 1</h5>
-            <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
-              End
+            <h5 className="text-5xl font-semibold">{jobDetails?.title}</h5>
+            <button
+              onClick={jobDetails?.isActive ? endJob : distributeReward}
+              className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]"
+            >
+              {jobDetails?.isActive ? <> END </> : <> Distribute Rewards</>}
             </button>
           </div>
           <div className="flex justify-between gap-4 w-fit items-center h-8 ">
             <p className="text-lg font-medium text-white/70">
-              Reward: <span className="text-xl font-normal text-white">100 Matic</span>
+              Reward:{" "}
+              <span className="text-xl font-normal text-white">{Number(jobDetails?.rewardPool).toString()} Matic</span>
             </p>
             <div className="h-5 w-0.5 bg-white" />
             <p className="text-lg font-medium text-white/70">
-              Annotator: <span className="text-xl font-normal text-white">Pro</span>
+              Annotator: <span className="text-xl font-normal text-white">{jobDetails?.annotatorType}</span>
             </p>
           </div>
           <p className="max-w-4xl text-white text-opacity-80">
-            <span className="text-lg font-semibold text-white pr-2">Description:</span> Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Eius recusandae non, quaerat soluta commodi repellendus porro debitis atque
-            tempore nulla beatae, voluptatibus dicta omnis iste voluptatum sunt numquam aperiam error.
+            <span className="text-lg font-semibold text-white pr-2">Description:</span> {jobDetails?.description}
           </p>
           <div className="flex gap-8 pt-6">
-            <button className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
+            {/* <button className="relative py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
               Open Annotator{" "}
               <span className="absolute right-[-1em] -top-7 bg-[#2A2F40] border p-1 px-2 rounded-[8px] text-[#edd346] font-medium">
                 Coming soon
               </span>
-            </button>
+            </button> */}
             <button className="py-2 px-4 h-fit bg-[#98aecd] bg-opacity-15 border border-[#98aecd] rounded-[10px]">
               Download Raw Data
             </button>
@@ -68,7 +112,7 @@ export default function page() {
               Challenges
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="annootators">
+          <TabsContent value="annnonator">
             <div className="border border-[#98aecd] rounded-[10px]  px-3 py-6  bg-[#98aecd] bg-opacity-10 flex flex-col gap-y-4">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-x-4">
