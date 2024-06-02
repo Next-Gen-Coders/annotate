@@ -29,6 +29,11 @@ export default function JobPage() {
         functionName: "getAllJobs",
         args: [],
       },
+      {
+        ...deployedContractABI_And_Address,
+        functionName: "getAllAnnotatorProfiles",
+        args: [],
+      },
     ],
   });
 
@@ -37,7 +42,7 @@ export default function JobPage() {
   };
 
   const distributeReward = () => {
-    console.log("This is distribut reward ");
+    console.log("This is distribute reward ");
   };
 
   useEffect(() => {
