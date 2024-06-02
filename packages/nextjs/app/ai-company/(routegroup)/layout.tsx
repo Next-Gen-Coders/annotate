@@ -1,17 +1,20 @@
 "use client";
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import profile from '../../../assets/Pepe.jpeg';
-import { Store, View } from 'lucide-react';
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import profile from "../../../assets/Pepe.jpeg";
+import { Store, View } from "lucide-react";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
-  const [name, setName] = useState('Name');
-  const [walletAddress, setWalletAddress] = useState('0x123456789');
-  const [description, setDescription] = useState('This is the description of sadfasdfsdf asd fas df asdf asd fa sdf asdf af a');
+  const [name, setName] = useState("Name");
+  const [walletAddress, setWalletAddress] = useState("0x123456789");
+  const [description, setDescription] = useState(
+    "This is the description of sadfasdfsdf asd fas df asdf asd fa sdf asdf af a",
+  );
 
   const handleLogout = () => {
-    console.log('Logout function triggered');
+    console.log("Logout function triggered");
   };
 
   return (
@@ -32,9 +35,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
                 </p>
               </div>
               <div className="pt-2">
-                <p className="px-2 line-clamp-2 text-sm opacity-80">
-                  {description}
-                </p>
+                <p className="px-2 line-clamp-2 text-sm opacity-80">{description}</p>
               </div>
               {/* <div className="flex gap-2 py-2">
                 <button className="py-1 px-2 text-sm border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-[6px] text-[#bcd0ec] hover:text-[#edd346]">

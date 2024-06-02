@@ -44,7 +44,7 @@ export default function Login() {
       functionName: "createAnnotatorProfile",
       args: [name, description],
     });
-    router.push("/home");
+    router.push(`/annotator/profile/${address}`);
   };
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Login() {
 
     // Navigate or display a toast message based on the user's role
     if (isInAnnotatorProfiles) {
-      router.push("/home");
+      router.push(`/ai-company/profile/${address}`);
     } else if (isInAiCompanyProfiles) {
       toast.error("You are registered as an AI company. Please use a different address.", { id: "error" });
     }
