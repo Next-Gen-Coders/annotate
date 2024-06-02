@@ -20,7 +20,7 @@ export default function Login() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const { writeContract } = useWriteContract();
+  const { writeContractAsync } = useWriteContract();
   const router = useRouter();
 
   const { data: contractData } = useReadContracts({
@@ -38,12 +38,13 @@ export default function Login() {
     ],
   });
 
-  const handleRegister = () => {
-    writeContract({
+  const handleRegister = async () => {
+    writeContractAsync({
       ...deployedContractABI_And_Address,
       functionName: "createAnnotatorProfile",
       args: [name, description],
     });
+    router.push("/home");
   };
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function Login() {
       setAnnotatorProfiles(listOfAnnotators);
     }
   }, [contractData]);
-  console.log(contractData)
+  console.log(contractData);
   useEffect(() => {
     // Check if the user's address is present in the arrays
     const isInAiCompanyProfiles = aiCompanyProfiles.some(
