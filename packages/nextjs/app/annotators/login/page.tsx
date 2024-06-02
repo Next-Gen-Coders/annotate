@@ -2,13 +2,24 @@
 
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount } from "wagmi";
+import { useAccount, useWriteContract } from "wagmi";
 import { Button } from "~~/components/@/components/ui/button";
 import { Input } from "~~/components/@/components/ui/input";
 import { Textarea } from "~~/components/@/components/ui/textarea";
+import { deployedContractABI_And_Address } from "~~/utils/contractInfo";
 
-export default function page() {
+export default function Login() {
   const { address, isConnected } = useAccount();
+
+  const { writeContract } = useWriteContract();
+
+  const register = () => {
+    writeContract({
+      ...deployedContractABI_And_Address,
+      functionName: "createAnnotatorProfile",
+      args: ["usrAddress", "a"],
+    });
+  };
   return (
     <div className="flex flex-col h-full w-full min-h-screen max-w-screen-xl items-center justify-center">
       {isConnected ? (
