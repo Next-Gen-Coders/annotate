@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useReadContracts, useWriteContract } from "wagmi";
 import { Button } from "~~/components/@/components/ui/button";
@@ -11,15 +11,10 @@ import { deployedContractABI_And_Address } from "~~/utils/contractInfo";
 export default function Login() {
   const { address, isConnected } = useAccount();
 
-  const { writeContract } = useWriteContract();
+  const [companyName, setCompanyName] = useState("");
+  const [description, setDescription] = useState("");
 
-  const register = () => {
-    writeContract({
-      ...deployedContractABI_And_Address,
-      functionName: "createAICompanyProfile",
-      args: ["usrAddress", "a"],
-    });
-  };
+  const { writeContract } = useWriteContract();
 
   const { data: contractData } = useReadContracts({
     contracts: [
@@ -36,7 +31,16 @@ export default function Login() {
     ],
   });
 
-// if the user is already present in the array when connecting then transfer them to the respective page but if opp then give a toast saying you are a dvertiser cannot login as annotator
+  // if the user is already present in the array when connecting then transfer them to the respective page but if opp then give a toast saying you are a dvertiser cannot login as annotator
+  const handleRegister = () => {
+    console.log("Company Name:", companyName);
+    console.log("Description:", description);
+    writeContract({
+      ...deployedContractABI_And_Address,
+      functionName: "createAICompanyProfile",
+      args: [companyName, description],
+    });
+  };
 
   return (
     <div className="flex flex-col h-full w-full min-h-screen max-w-screen-xl items-center justify-center">
@@ -45,19 +49,29 @@ export default function Login() {
           <div className="flex flex-col gap-y-10 items-center w-full">
             <div className="space-y-2">
               <h4 className="text-6xl font-semibold">Innovators</h4>
-              <p>Get your raw data lableled from experts</p>
+              <p>Get your raw data labeled from experts</p>
             </div>
             <div className="flex flex-col gap-y-6">
               <div className="flex items-center gap-x-6">
-                <span className="w-full text-xl font-semibold">Comapany Name:</span>
-                <Input className="border-b min-w-80 px-2" placeholder="Company Name" />
+                <span className="w-full text-xl font-semibold">Company Name:</span>
+                <Input
+                  className="border-b min-w-80 px-2"
+                  placeholder="Company Name"
+                  value={companyName}
+                  onChange={e => setCompanyName(e.target.value)}
+                />
               </div>
               <div className="flex items-start gap-x-6">
                 <span className="w-full text-xl font-semibold">Description:</span>
-                <Textarea className="border-b min-w-80 px-2" placeholder="Company Description" />
+                <Textarea
+                  className="border-b min-w-80 px-2"
+                  placeholder="Company Description"
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
+                />
               </div>
             </div>
-            <Button className="px-10" variant="outline">
+            <Button className="px-10" variant="outline" onClick={handleRegister}>
               Register
             </Button>
           </div>
@@ -66,7 +80,7 @@ export default function Login() {
         <div className="flex flex-col gap-y-10 items-center">
           <div className="space-y-2">
             <h4 className="text-6xl font-semibold">Innovators</h4>
-            <p>Get your raw data lableled from experts</p>
+            <p>Get your raw data labeled from experts</p>
           </div>
 
           <ConnectButton />
