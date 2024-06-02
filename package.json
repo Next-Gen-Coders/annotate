@@ -49,6 +49,7 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
+    "@spheron/browser-upload": "^2.0.1",
     "framer-motion": "^11.2.9",
     "lucide": "^0.381.0"
   }

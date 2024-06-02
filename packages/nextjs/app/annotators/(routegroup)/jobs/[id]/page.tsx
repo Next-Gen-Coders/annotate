@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { Alert, AlertDescription, AlertTitle } from "../../../../../components/@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../../components/@/components/ui/tabs";
-import { XIcon } from "lucide-react";
+import lighthouse from "@lighthouse-web3/sdk";
+import { upload } from "@spheron/browser-upload";
+import { ProtocolEnum, SpheronClient } from "@spheron/storage";
+import { TerminalIcon, XIcon } from "lucide-react";
 import { Button } from "~~/components/@/components/ui/button";
 import {
   Dialog,
@@ -15,6 +19,7 @@ import {
 import { Input } from "~~/components/@/components/ui/input";
 
 export default function Page() {
+  const fileInputRef = useRef(null);
   const [reward, setReward] = useState("100 Matic");
   const [annotator, setAnnotator] = useState("Pro");
   const [description, setDescription] = useState(
@@ -22,6 +27,7 @@ export default function Page() {
   );
   const [name, setName] = useState("name");
   const [walletAddress, setWalletAddress] = useState("0x123456789");
+  const [uploadedFileUrl, setUploadedFileUrl] = useState("");
 
   const handleAnnotate = () => {
     console.log("Annotate button clicked");
@@ -43,9 +49,31 @@ export default function Page() {
     console.log("handle resolve clicked");
   };
 
+  const handleSubmit = () => {
+    console.log("Form submitted");
+  };
+
+  const uploadFile = async (file: any) => {
+    if (file) {
+      // @ts-ignore
+      const output = await lighthouse.upload(file, "98b765d2.23e6962a47cb4adba015c60b14090ef0", undefined);
+      console.log("File Status:", output);
+      setUploadedFileUrl(`https://gateway.lighthouse.storage/ipfs/${output.data.Hash}`);
+
+      console.log("Visit at https://gateway.lighthouse.storage/ipfs/" + output.data.Hash);
+    }
+  };
+
   return (
     <div className="w-11/12 max-w-screen-xl mx-auto my-6 border border-[#98aecd] rounded-[10px]  bg-[#98aecd] bg-opacity-10">
       <div className="w-[95%] px-2 mx-auto py-8">
+        {uploadedFileUrl && (
+          <Alert>
+            <TerminalIcon className="h-4 w-4" />
+            <AlertTitle>Uploaded File</AlertTitle>
+            <AlertDescription>{uploadedFileUrl}</AlertDescription>
+          </Alert>
+        )}
         <div className="flex flex-col gap-y-6 pb-10">
           <div className="flex justify-between items-center">
             <h5 className="text-5xl font-semibold">JOB 1</h5>
@@ -67,7 +95,7 @@ export default function Page() {
                   <DialogHeader>
                     <DialogTitle>Submit Annotated Data</DialogTitle>
                     <DialogDescription>
-                      <form>
+                      <form onSubmit={() => handleSubmit()}>
                         <div className="py-10 flex flex-col gap-y-10 items-center text-center">
                           <p>
                             {" "}
@@ -75,8 +103,14 @@ export default function Page() {
                           </p>
                           <Input
                             type="file"
+                            ref={fileInputRef}
                             className="border text-center  border-[#98aecd] rounded-[10px]  px-3 py-20 w-full  bg-[#98aecd] bg-opacity-10 flex justify-center items-center"
                             placeholder="+ Upload Folder"
+                            onChange={e => {
+                              if (e.target.files) {
+                                uploadFile(e.target.files!);
+                              }
+                            }}
                             // onChange={handleFileChange}
                           />
                           <div className="mb-4 w-full">
