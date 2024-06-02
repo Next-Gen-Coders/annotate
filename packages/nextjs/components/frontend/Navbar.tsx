@@ -11,9 +11,12 @@ const Navbar = () => {
           <p className="absolute top-[-1em] text-sm font-md right-[-1em] text-[#edd346]">BETA</p>
         </div>
         <Link href="/annotators/login">Annotate</Link>
-        <button className="py-2 px-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] btn-shadow bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]">
+        <Link
+          href="/ai-company/login"
+          className="py-2 px-4 border border-[#98aecd] bg-[#98aecd] hover:border-[#edd346] hover:bg-[#edd346] btn-shadow bg-opacity-20 hover:bg-opacity-20 duration-200 rounded-full text-[#bcd0ec] hover:text-[#edd346]"
+        >
           Get Started
-        </button>
+        </Link>
       </div>
     </div>
   );
