@@ -1,11 +1,18 @@
 import React from "react";
+import { Poller_One } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
+
+const font = Poller_One({ weight: "400", subsets: ["latin"] });
 
 const Navbar = () => {
   return (
     <div className="flex justify-around py-2 md:py-4 lg:py-6">
-      <p className="akaya-font md:text-3xl text-xl">ANNOTATE</p>
-      <div className="flex gap-4 md:gap-6 text-md md:text-lg items-center font-semibold">
+      <div className="flex items-center gap-x-2">
+        <Image src="/icon.png" alt="logo" className="size-12" width={100} height={100} />
+        <p className={`md:text-3xl text-xl ${font.className}`}>ANNOTATE</p>
+      </div>
+      <div className="flex gap-x-8 items-center font-semibold">
         <div className="relative">
           Market Place
           <p className="absolute top-[-1em] text-sm font-md right-[-1em] text-[#edd346]">BETA</p>
