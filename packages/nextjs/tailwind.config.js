@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./utils/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("daisyui")],
@@ -76,6 +75,14 @@ module.exports = {
   },
   theme: {
     extend: {
+      colors: {
+        "border-blue": "#98aecd",
+        "highlight-yellow": "#edd346",
+        gradient1: "#fae998",
+        gradient2: "#efc436",
+        "solid-dark-blue": "#0f1524",
+        "light-blue": "#385990",
+      },
       boxShadow: {
         center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
       },
