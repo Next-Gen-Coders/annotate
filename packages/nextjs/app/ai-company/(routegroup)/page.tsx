@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import profile from "../../../assets/Pepe.jpeg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/@/components/ui/tabs";
-import { Edit, Eye, Pen, View } from "lucide-react";
-import { Button } from "~~/components/@/components/ui/button";
+import { View } from "lucide-react";
 
 export default function page() {
   const handleChallengeAnnotation = () => {
@@ -57,7 +56,7 @@ export default function page() {
         </div>
 
         <div className="py-2">
-          <p className="text-2xl md:text-2xl relative ">
+          <p className="text-2xl relative ">
             Jobs
             {/* <span className="flex justify-center items-center border rounded-full text-sm absolute h-7 w-7 -top-1 -right-8 ">
                 10
